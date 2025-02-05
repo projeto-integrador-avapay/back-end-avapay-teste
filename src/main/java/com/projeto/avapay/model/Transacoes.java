@@ -28,76 +28,78 @@ public class Transacoes {
 
     @Column(nullable = false, length = 50)
     private String tipoTransacao;
-
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "id_conta_origem", nullable = false)
-    private Conta contaOrigem;
-
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "id_conta_destino", nullable = false)
-    private Conta contaDestino;
-
+    
+   
     @Column(nullable = false, precision = 10, scale = 2)
     private BigDecimal valor;
 
     @Column(nullable = false)
     private LocalDateTime dataHora = LocalDateTime.now();
 
-    // Getters e Setters
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "conta_origem_id", referencedColumnName = "id")
+    private Conta contaOrigem;
+    
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "conta_destino_id", referencedColumnName = "id")
+    private Conta contaDestino;
 
-    public Long getId() {
-        return id;
-    }
+	public Long getId() {
+		return id;
+	}
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-    public String getTipoTransacao() {
-        return tipoTransacao;
-    }
+	public String getDescricao() {
+		return descricao;
+	}
 
-    public void setTipoTransacao(String tipoTransacao) {
-        this.tipoTransacao = tipoTransacao;
-    }
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
 
-    public Conta getContaOrigem() {
-        return contaOrigem;
-    }
+	public String getTipoTransacao() {
+		return tipoTransacao;
+	}
 
-    public void setContaOrigem(Conta contaOrigem) {
-        this.contaOrigem = contaOrigem;
-    }
+	public void setTipoTransacao(String tipoTransacao) {
+		this.tipoTransacao = tipoTransacao;
+	}
 
-    public Conta getContaDestino() {
-        return contaDestino;
-    }
+	public BigDecimal getValor() {
+		return valor;
+	}
 
-    public void setContaDestino(Conta contaDestino) {
-        this.contaDestino = contaDestino;
-    }
+	public void setValor(BigDecimal valor) {
+		this.valor = valor;
+	}
 
-    public BigDecimal getValor() {
-        return valor;
-    }
+	public LocalDateTime getDataHora() {
+		return dataHora;
+	}
 
-    public void setValor(BigDecimal valor) {
-        this.valor = valor;
-    }
+	public void setDataHora(LocalDateTime dataHora) {
+		this.dataHora = dataHora;
+	}
 
-    public String getDescricao() {
-        return descricao;
-    }
+	public Conta getContaOrigem() {
+		return contaOrigem;
+	}
 
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
+	public void setContaOrigem(Conta contaOrigem) {
+		this.contaOrigem = contaOrigem;
+	}
 
-    public LocalDateTime getDataHora() {
-        return dataHora;
-    }
+	public Conta getContaDestino() {
+		return contaDestino;
+	}
 
-    public void setDataHora(LocalDateTime dataHora) {
-        this.dataHora = dataHora;
-    }
+	public void setContaDestino(Conta contaDestino) {
+		this.contaDestino = contaDestino;
+	}
+    
+    
+    
 }

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.projeto.avapay.model.Conta;
 import com.projeto.avapay.model.Extrato;
 import com.projeto.avapay.model.Transacoes;
 import com.projeto.avapay.repository.ExtratoRepository;
@@ -23,8 +24,8 @@ public class ExtratoService {
     private TransacoesRepository transacoesRepository;
 
     // Lista extratos associados a uma conta específica
-    public List<Extrato> listarExtratosPorConta(Long contaId) {
-        List<Transacoes> transacoes = transacoesRepository.findByContaOrigemIdOrContaDestinoId(contaId, contaId);
+    public List<Extrato> listarExtratosPorConta(Conta contaId) {
+        List<Transacoes> transacoes = transacoesRepository.findByContaOrigemIdOrContaDestinoId(contaId , contaId);
         return extratoRepository.findByTransacaoIn(transacoes);
     }
 
@@ -55,7 +56,7 @@ public class ExtratoService {
     }
 
     // Busca transações associadas a uma conta específica
-    public List<Transacoes> buscarTransacoesPorConta(Long contaId) {
+    public List<Transacoes> buscarTransacoesPorConta(Conta contaId) {
         return transacoesRepository.findByContaOrigemIdOrContaDestinoId(contaId, contaId);
     }
 }

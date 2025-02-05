@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.projeto.avapay.dto.TransacaoDTO;
+import com.projeto.avapay.model.Conta;
 import com.projeto.avapay.model.Transacoes;
 import com.projeto.avapay.repository.TransacoesRepository;
 
@@ -18,8 +19,8 @@ public class TransacoesService {
     private TransacoesRepository transacoesRepository;
 
     // Método para listar transações por conta e retornar como DTO
-    public List<TransacaoDTO> listarTransacoesPorConta(Long contaId) {
-        return transacoesRepository.findByContaOrigemOrContaDestino(contaId, contaId).stream()
+    public List<TransacaoDTO> listarTransacoesPorConta(Conta contaId) {
+        return transacoesRepository.findByContaOrigemOrContaDestino( contaId, contaId).stream()
                 .map(transacao -> new TransacaoDTO(
                         transacao.getTipoTransacao(),
                         transacao.getValor(),
@@ -31,7 +32,7 @@ public class TransacoesService {
     }
 
     // Método separado para buscar transações por conta sem DTO
-    public List<Transacoes> buscarTransacoesPorConta(Long contaId) {
+    public List<Transacoes> buscarTransacoesPorConta(Conta contaId) {
         return transacoesRepository.findByContaOrigemIdOrContaDestinoId(contaId, contaId);
     }
 }

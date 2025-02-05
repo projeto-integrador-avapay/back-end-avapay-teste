@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.projeto.avapay.model.Conta;
 import com.projeto.avapay.model.Extrato;
 import com.projeto.avapay.service.ExtratoService;
 
@@ -22,7 +23,7 @@ public class ExtratoController {
     private ExtratoService extratoService;
 
     @GetMapping("/{contaId}")
-    public ResponseEntity<?> listarExtratosPorConta(@PathVariable Long contaId) {
+    public ResponseEntity<?> listarExtratosPorConta(@PathVariable Conta contaId) {
         List<Extrato> extratos = extratoService.listarExtratosPorConta(contaId);
 
         if (extratos.isEmpty()) {

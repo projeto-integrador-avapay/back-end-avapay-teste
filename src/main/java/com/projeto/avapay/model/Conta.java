@@ -28,9 +28,9 @@ public class Conta {
     @Column(nullable = false, unique = true)
     private String numeroConta;
 
-    @Column(nullable = false)
-    private String agencia;
-
+    @Column(name = "agencia", columnDefinition = "INT")
+    private Integer agencia;
+    
     @Column(nullable = false, precision = 10, scale = 2)
     private BigDecimal saldo;
 
@@ -68,11 +68,11 @@ public class Conta {
         this.numeroConta = numeroConta;
     }
 
-    public String getAgencia() {
+    public Integer getAgencia() {
         return agencia;
     }
 
-    public void setAgencia(String agencia) {
+    public void setAgencia(Integer agencia) {
         this.agencia = agencia;
     }
 

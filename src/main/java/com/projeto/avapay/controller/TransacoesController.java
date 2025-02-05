@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.projeto.avapay.model.Conta;
 import com.projeto.avapay.model.Transacoes;
 import com.projeto.avapay.service.TransacoesService;
 
@@ -20,7 +21,7 @@ public class TransacoesController {
     private TransacoesService transacoesService;
 
     @GetMapping("/{contaId}")
-    public ResponseEntity<?> buscarTransacoesPorConta(@PathVariable Long contaId) {
+    public ResponseEntity<?> buscarTransacoesPorConta(@PathVariable Conta contaId) {
         List<Transacoes> transacoes = transacoesService.buscarTransacoesPorConta(contaId);
 
         if (transacoes.isEmpty()) {

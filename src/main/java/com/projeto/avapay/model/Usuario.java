@@ -33,7 +33,7 @@ public class Usuario {
     @Column(nullable = false)
     private String senha;
 
-    @Column(nullable = false)
+    @Column(name = "tipo_usuario",nullable = false)
     private String tipoUsuario; // ADM ou CLIENTE
 
     // Construtor Padrão
